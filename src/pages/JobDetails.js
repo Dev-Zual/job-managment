@@ -54,6 +54,7 @@ const JobDetails = () => {
     _id,
     employer,
     status,
+    applicants,
   } = data?.data || {};
 
   const handleReply = (id, question) => {
@@ -90,6 +91,7 @@ const JobDetails = () => {
       navigate("/register");
       return;
     }
+
     const applyData = {
       userId: user._id,
       jobId: _id,

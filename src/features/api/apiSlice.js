@@ -4,7 +4,7 @@ const apiSlice = createApi({
   reducerPath: "api",
   tagTypes: ["Delete", "Jobs", "Apply"],
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000",
+    baseUrl: "https://jobbox-server-two.vercel.app",
   }),
   endpoints: (builder) => ({}),
 });

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Loading from "../../components/reusable/Loading";
 import {
   useDeleteJobByIdMutation,
@@ -9,6 +10,7 @@ import {
 } from "../../features/job/jobApi";
 
 const PostedJob = () => {
+  const navigate = useNavigate();
   const {
     user: { email },
   } = useSelector((state) => state.auth);
@@ -68,7 +70,7 @@ const PostedJob = () => {
                     <h1 class="font-semibold text-left">Total Applicants</h1>
                   </th>
                   <th className="p-2">
-                    <h1 class="font-semibold text-left">All Candidates</h1>
+                    <h1 class="font-semibold text-left">See Candidates</h1>
                   </th>
                   <th className="p-2">
                     <h1 class="font-semibold text-left">Status</h1>
@@ -97,16 +99,23 @@ const PostedJob = () => {
                         <div className="text-center">{applicants.length}</div>
                       </td>
                       <td className="p-2">
-                        <button>Candidates</button>
+                        <button
+                          className="border border-green-500 px-2 py-1 rounded-full  "
+                          onClick={() =>
+                            navigate(`/dashboard/candidate-details/${_id}`)
+                          }
+                        >
+                          All Candidates
+                        </button>
                       </td>
                       <td className="p-2">
                         <div>
                           {status === "active" ? (
-                            <span className="border rounded-full px-2 text-green-500 py-1 ">
+                            <span className=" px-2 text-green-500 py-1 ">
                               Active
                             </span>
                           ) : (
-                            <span className="px-2 py-1 border rounded-full text-red-500 ">
+                            <span className="px-2 py-1  text-red-500 ">
                               Closed
                             </span>
                           )}
